@@ -1,62 +1,53 @@
-Static Website Hosting with AWS S3, CloudFront & GitHub Actions
+# Static Website Hosting with AWS S3, CloudFront & GitHub Actions
 
 This project demonstrates how to deploy a static website using:
 
-Amazon S3 – Storage for static files (HTML, CSS, JS)
+- **Amazon S3** – Storage for static files (HTML, CSS, JS)  
+- **Amazon CloudFront (with OAC)** – CDN for fast, secure global delivery  
+- **GitHub Actions** – CI/CD automation for deployments  
 
-Amazon CloudFront (with OAC) – CDN for fast, secure global delivery
+---
 
-GitHub Actions – CI/CD automation for deployments
-
-Architecture
+## Architecture
 
 GitHub Repository → GitHub Actions → Amazon S3 → Amazon CloudFront → User
 
-Developer pushes code → GitHub Actions triggers
+- Developer pushes code → GitHub Actions triggers  
+- GitHub Actions uploads files to S3  
+- CloudFront fetches files securely via Origin Access Control (OAC)  
+- End-users access the website through CloudFront distribution URL  
 
-GitHub Actions uploads files to S3
+---
 
-CloudFront fetches files securely via Origin Access Control (OAC)
+## Tech Stack
 
-End-users access the website through CloudFront distribution URL
+- **AWS S3** – Static website hosting  
+- **AWS CloudFront (OAC)** – Secure content delivery  
+- **GitHub Actions** – CI/CD automation  
+- **HTML / CSS / JS** – Website content  
 
-Tech Stack
+---
 
-AWS S3 – Static website hosting
+## Setup Instructions
 
-AWS CloudFront (OAC) – Secure content delivery
+### 1. Create an S3 Bucket
+- Bucket name: `my-aws-site-sachinkumarhp230`  
+- Disable public access  
+- Enable **Static Website Hosting**  
+- Upload website files: `index.html`, `error.html`  
 
-GitHub Actions – CI/CD automation
+### 2. Configure CloudFront with OAC
+- Create a new **CloudFront distribution**  
+- Set the S3 bucket as the **origin**  
+- Enable **Origin Access Control (OAC)** to restrict direct S3 access  
 
-HTML / CSS / JS – Website content
+### 3. Update Bucket Policy
+- Grant CloudFront OAC permission to read from the bucket  
 
-Setup Instructions
-1. Create an S3 Bucket
+### 4. Add GitHub Actions Workflow
+Create `.github/workflows/deploy.yml`:
 
-Bucket name: my-aws-site-sachinkumarhp230
-
-Disable public access
-
-Enable Static Website Hosting
-
-Upload website files: index.html, error.html
-
-2. Configure CloudFront with OAC
-
-Create a new CloudFront distribution
-
-Set the S3 bucket as the origin
-
-Enable Origin Access Control (OAC) to restrict direct S3 access
-
-3. Update Bucket Policy
-
-Grant CloudFront OAC permission to read from the bucket
-
-4. Add GitHub Actions Workflow
-
-Create a workflow file: .github/workflows/deploy.yml
-
+```yaml
 name: Deploy to S3
 
 on:
@@ -82,47 +73,53 @@ jobs:
       - name: Deploy to S3
         run: aws s3 sync . s3://my-aws-site-sachinkumarhp230 --delete
 
+---
 
-Commands to push code:
-
+### Commands to push code:
 git add .
 git commit -m "Initial commit"
 git push origin main
 
+---
 
-Once pushed, GitHub Actions will automatically deploy the website to S3.
-
-Live Website
+## Live Website
 
 View Live Website
 
-Website Preview
+---
 
-<img width="1450" height="516" alt="image" src="https://github.com/user-attachments/assets/184aa62f-2646-4c8d-86f8-889ab5d6345b" />
+## Website Preview
 
+<img width="1450" height="516" alt="image" src="https://github.com/user-attachments/assets/0d492234-3e30-4091-a9b7-01fd471f67da" />
 
-Common Issues & Fixes
+---
 
-AccessDenied Error → Update bucket policy with OAC permissions
+## Common Issues & Fixes
 
-Invalid Principal Error → Ensure correct OAC setup; do not mix OAI with OAC
+- **AccessDenied Error** → Update bucket policy with OAC permissions
 
-Cache not updating → Invalidate CloudFront cache after deployments
+- **Invalid Principal Error** → Ensure correct OAC setup; do not mix OAI with OAC
 
-Future Improvements
+- **Cache not updating** → Invalidate CloudFront cache after deployments
 
-Add a custom domain via Route 53
+---
 
-Enable HTTPS with AWS Certificate Manager
+## Future Improvements
 
-Add automated tests before deployment
+- Adding a custom domain via Route 53
 
-Author
+- Enable HTTPS with AWS Certificate Manager
 
-Sachinkumar H P
+- Add automated tests before deployment
 
-LinkedIn: [Your LinkedIn URL]
+---
 
-GitHub: sachinkumarhp230
+## Author
 
-Project complete – Static website is live via AWS S3 + CloudFront + GitHub Actions
+**Sachinkumar H P**
+
+- LinkedIn: www.linkedin.com/in/sachinkumarhp
+
+- GitHub: sachinkumarhp230
+
+## **Project complete** – Static website is live via AWS S3 + CloudFront + GitHub Actions
