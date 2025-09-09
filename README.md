@@ -73,53 +73,31 @@ jobs:
       - name: Deploy to S3
         run: aws s3 sync . s3://my-aws-site-sachinkumarhp230 --delete
 
----
-
-### Commands to push code:
+# Commands to push code
 git add .
 git commit -m "Initial commit"
 git push origin main
 
----
-
 ## Live Website
-
-View Live Website
-
----
+[View Live Website](https://d38gsbue97vxxs.cloudfront.net)
 
 ## Website Preview
-
 <img width="1450" height="516" alt="image" src="https://github.com/user-attachments/assets/0d492234-3e30-4091-a9b7-01fd471f67da" />
 
----
-
 ## Common Issues & Fixes
-
 - **AccessDenied Error** → Update bucket policy with OAC permissions
-
 - **Invalid Principal Error** → Ensure correct OAC setup; do not mix OAI with OAC
-
 - **Cache not updating** → Invalidate CloudFront cache after deployments
 
----
-
 ## Future Improvements
-
-- Adding a custom domain via Route 53
-
+- Add a custom domain via Route 53
 - Enable HTTPS with AWS Certificate Manager
-
 - Add automated tests before deployment
 
----
-
 ## Author
+**Sachinkumar H P**  
+- LinkedIn: [www.linkedin.com/in/sachinkumarhp](https://www.linkedin.com/in/sachinkumarhp)  
+- GitHub: [sachinkumarhp230](https://github.com/sachinkumarhp230)
 
-**Sachinkumar H P**
-
-- LinkedIn: www.linkedin.com/in/sachinkumarhp
-
-- GitHub: sachinkumarhp230
-
-## **Project complete** – Static website is live via AWS S3 + CloudFront + GitHub Actions
+## Project complete
+Static website is live via AWS S3 + CloudFront + GitHub Actions
